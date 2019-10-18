@@ -44,6 +44,11 @@ int main()
 				dup2(fd, STDOUT_FILENO);
 				close(fd);
 			}
+      if(l->in) {
+				int fd = open(l->in, O_RDONLY, S_IRUSR);
+				dup2(fd, STDIN_FILENO);
+				close(fd);
+			}
       execvp(cmd[0],cmd);
       break;
     default:
